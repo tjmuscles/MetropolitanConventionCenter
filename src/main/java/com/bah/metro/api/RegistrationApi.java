@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bah.metro.domain.Registration;
 
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/registrations")
 public class RegistrationApi {
 
 //	public Registration(long id, int event_id, int customer_id, Date registration_date, String eventName) {
