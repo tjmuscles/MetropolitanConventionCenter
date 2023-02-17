@@ -1,10 +1,26 @@
 package com.bah.metro.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="CUSTOMERS")
 public class Customer {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	
+	@Column(name="CUSTOMER_NAME")
 	private String name;
+	
 	private String email;
+	
+	@Column(name="PASSWORD")
 	private String password;
 	
 	public Customer(int id, String name, String email, String password) {
