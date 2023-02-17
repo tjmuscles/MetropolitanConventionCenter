@@ -1,29 +1,31 @@
 package com.bah.metro.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="EVENTS")
 public class Event {
 		
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
 		public long id;
 		
+		
+		
+		@Column(name="EVENT_CODE")
 		public String code;
 		
 		public String title;
 		
 		public String description;
 		
-		public Event() {
-			// TODO Auto-generated constructor stub
-		}
-		
-		
-
-		public Event(long id, String code, String title, String description) {
-			super();
-			this.id = id;
-			this.code = code;
-			this.title = title;
-			this.description = description;
-		}
-
+	
 
 
 		public long getId() {
@@ -58,7 +60,11 @@ public class Event {
 			this.description = description;
 		}
 		
-		
+		@Override
+		public String toString() {
+			return "Event [id=" + id + ", code=" + code + ", title=" + title + ", description=" + description + "]";
+		}
+
 	}
 
 
