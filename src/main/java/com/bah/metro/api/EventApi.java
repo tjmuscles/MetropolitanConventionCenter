@@ -26,65 +26,49 @@ import com.bah.metro.repository.EventRepository;
 @RestController
 @RequestMapping("/events")
 public class EventApi {
-	
-	
+
 	@Autowired
 	EventRepository repo;
+
 	@GetMapping
 	public Iterable<Event> getAllEvents() {
 		return repo.findAll();
 	}
+
 	@GetMapping("/{eventId}")
-	public Optional<Event> getEventById(@PathVariable("eventId")
-	long id) {
-	return repo.findById(id);
+	public Optional<Event> getEventById(@PathVariable("eventId") long id) {
+		return repo.findById(id);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<?> addEvent(@RequestBody Event newEvent,
-	UriComponentsBuilder uri) {
-	if (newEvent.getId()!=0
-	|| newEvent.getCode() == null || newEvent.getTitle() == null) { // Reject - we'll assign the
-	
-	return ResponseEntity.badRequest().build();
+	public ResponseEntity<?> addEvent(@RequestBody Event newEvent, UriComponentsBuilder uri) {
+		if (newEvent.getId() != 0 || newEvent.getCode() == null || newEvent.getTitle() == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		newEvent = repo.save(newEvent);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newEvent.getId())
+				.toUri();
+		ResponseEntity<?> response = ResponseEntity.created(location).build();
+		return response;
 	}
-	newEvent=repo.save(newEvent);
-	URI location=ServletUriComponentsBuilder.fromCurrentRequest()
-	.path("/{id}").buildAndExpand(newEvent.getId()).toUri();
-	ResponseEntity<?> response=ResponseEntity.created(location).build();
-	return response;
-	}
-	
+
 	@PutMapping("/{eventId}")
-	public ResponseEntity<?> putEvent(
-			@RequestBody Event newEvent,
-			@PathVariable("eventId") long eventId) 
-	{
-		if (newEvent.getId()!=eventId
-				|| newEvent.getCode()==null
-				|| newEvent.getTitle() == null) {
-				return ResponseEntity.badRequest().build();
-				}
-				newEvent=repo.save(newEvent);
-				return ResponseEntity.ok().build();
+	public ResponseEntity<?> putEvent(@RequestBody Event newEvent, @PathVariable("eventId") long eventId) {
+		if (newEvent.getId() != eventId || newEvent.getCode() == null || newEvent.getTitle() == null) {
+			return ResponseEntity.badRequest().build();
+		}
+		newEvent = repo.save(newEvent);
+		return ResponseEntity.ok().build();
 	}
-		//  Workshop:  Implement a method to update an entitye in response to a PUT message.
-	
+
 	@DeleteMapping("/{eventId}")
 	public ResponseEntity<?> deleteEventById(@PathVariable("eventId") long id) {
-		//  Workshop:  Implement a method to delete an entity. 
-		
-		//epo.delete
+
 		repo.deleteById(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-	}	
-	
-	
-	
-	
-	
-	
-	//PROJECT DAY 1
+	}
+
+	// PROJECT DAY 1
 //	ArrayList<Event> events = new ArrayList<Event>() {
 //		{
 //		add(new Event(1, "CNF001", "All-Java Conference", "Lectures and exhibits covering all Java topics"));
@@ -109,6 +93,5 @@ public class EventApi {
 //	public Event getCustomerById(@PathVariable("eventId") long id) {
 //		return this.getAllEvents().stream().filter(event-> event.getId()==id).findFirst().orElse(null);
 //	}
-	
 
 }

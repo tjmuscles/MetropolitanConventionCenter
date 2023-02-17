@@ -13,7 +13,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@Column(name="CUSTOMER_NAME")
 	private String name;
@@ -22,20 +22,12 @@ public class Customer {
 	
 	@Column(name="PASSWORD")
 	private String password;
-	
-	public Customer(int id, String name, String email, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
