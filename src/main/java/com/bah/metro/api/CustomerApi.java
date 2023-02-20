@@ -1,9 +1,7 @@
 package com.bah.metro.api;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.bah.metro.domain.Customer;
-import com.bah.metro.domain.Event;
 import com.bah.metro.repository.CustomersRepository;
 
 @RestController
