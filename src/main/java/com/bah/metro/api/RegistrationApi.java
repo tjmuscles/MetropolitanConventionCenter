@@ -39,7 +39,7 @@ public class RegistrationApi {
 
 	@PostMapping
 	public ResponseEntity<?> addRegistration(@RequestBody Registration newRegistration, UriComponentsBuilder uri) {
-		if(newRegistration.getId()==0 || newRegistration.getCustomerId()==0 || newRegistration.getEventId()==0 ) {
+		if(newRegistration.getId()!=0 || newRegistration.getCustomerId()==null || newRegistration.getEventId()==null ) {
 			 
 			return ResponseEntity.badRequest().build();
 			

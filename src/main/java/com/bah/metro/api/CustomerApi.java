@@ -69,13 +69,13 @@ public class CustomerApi {
 	
 	//lookupCustomerByName POST
 	@PostMapping("/byname")
-	public ResponseEntity<?> lookupCustomerByNamePost(@RequestBody String username, UriComponentsBuilder uri) {
+	public ResponseEntity<?> lookupCustomerByNamePost(@RequestBody Customer custReq, UriComponentsBuilder uri) {
 		Customer customer = null;
 		Iterator<Customer> customers = repo.findAll().iterator();
 		
 		while(customers.hasNext()) {
 			customer = customers.next();
-			if(customer.getName().equals(username)) {
+			if(customer.getName().equals(custReq.getName())) {
 				return ResponseEntity.ok(customer);
 			}
 		}

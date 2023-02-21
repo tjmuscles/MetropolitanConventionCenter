@@ -7,20 +7,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="CUSTOMERS")
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonProperty
 	private long id;
 	
 	@Column(name="CUSTOMER_NAME")
+	@JsonProperty
 	private String name;
 	
+	@JsonProperty
 	private String email;
 	
 	@Column(name="PASSWORD")
+	@JsonProperty
 	private String password;
 
 	public long getId() {
