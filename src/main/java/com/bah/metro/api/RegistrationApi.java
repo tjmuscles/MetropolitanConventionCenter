@@ -39,7 +39,7 @@ public class RegistrationApi {
 
 	@PostMapping
 	public ResponseEntity<?> addRegistration(@RequestBody Registration newRegistration, UriComponentsBuilder uri) {
-		if(newRegistration.getId()!=0 || newRegistration.getCustomerId()==null || newRegistration.getEventId()==null ) {
+		if(newRegistration.getId()!=0 || newRegistration.getCustomer_id()==null || newRegistration.getEvent_id()==null ) {
 			 
 			return ResponseEntity.badRequest().build();
 			
@@ -54,7 +54,7 @@ public class RegistrationApi {
 	@PutMapping("/{registrationId}")
 	public ResponseEntity<?> putRegistration(@RequestBody Registration newRegistration, @PathVariable("registrationId") long registrationId) 
 	{
-		if(newRegistration.getId() != registrationId || newRegistration.getCustomerId()==0 || newRegistration.getEventId()==0) {
+		if(newRegistration.getId() != registrationId || newRegistration.getCustomer_id()==null || newRegistration.getEvent_id()==null) {
 			return ResponseEntity.badRequest().build();
 		}
 		newRegistration=repo.save(newRegistration);

@@ -1,5 +1,7 @@
 package com.bah.metro.domain;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,74 +18,61 @@ public class Registration {
 	private long id;
 	
 	@Column(name="EVENT_ID")
-	private Integer eventId;
+	private String event_id;
 	
 	@Column(name="CUSTOMER_ID")
-	private Integer customerId;
+	private String customer_id;
 	
 	@Column(name="REGISTRATION_DATE")
-	private String timestamp;
+	private Date registration_date;
 	
 	private String notes;
 
-	
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-
-	public Integer getEventId() {
-		return eventId;
+	public String getEvent_id() {
+		return event_id;
 	}
 
-
-	public void setEventId(Integer eventId) {
-		this.eventId = eventId;
-	}
-	
-
-	public Integer getCustomerId() {
-		return customerId;
+	public void setEvent_id(String event_id) {
+		this.event_id = event_id;
 	}
 
-
-
-	public void setCustomerId(Integer customerId) {
-		this.customerId = customerId;
+	public String getCustomer_id() {
+		return customer_id;
 	}
 
-
-	public String getTimestamp() {
-		return timestamp;
+	public void setCustomer_id(String customer_id) {
+		this.customer_id = customer_id;
 	}
 
-
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
+	public Date getRegistration_date() {
+		return registration_date;
 	}
 
+	public void setRegistration_date(Date registration_date) {
+		this.registration_date = registration_date;
+	}
 
 	public String getNotes() {
 		return notes;
 	}
 
-
 	public void setNotes(String notes) {
 		this.notes = notes;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Registration [id=" + id + ", eventId=" + eventId + ", customerId=" + customerId + ", timestamp="
-				+ timestamp + ", notes=" + notes + "]";
+		return "Registration [id=" + id + ", event_id=" + event_id + ", customer_id=" + customer_id
+				+ ", registration_date=" + registration_date + ", notes=" + notes + "]";
 	}
-
 	
 	
 }
